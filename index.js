@@ -2,14 +2,13 @@
 
 var config = require('./config');
 
+
 var Server = require('./lib/server');
 var server = new Server(config.server);
 
-var Client = require('./lib/client');
-var client = new Client(config.client);
+var Udp = require('./lib/clients/udp');
+var Sql = require('./lib/clients/sql');
 
-setInterval(onInterval, config.interval);
-
-function onInterval() {
-    client.send(server.metrics);
-}
+server.addClient(new Udp(config.clients.udp));
+server.addClient(new Sql(config.clients.sql));
+server.start();
