@@ -1,9 +1,7 @@
 'use strict';
 
-var PORT = 9003;
-var HOST = '127.0.0.1';
-
 var dgram = require('dgram');
+var config = require('../config').client;
 var metrics = {};
 var server;
 var address;
@@ -17,16 +15,17 @@ function start() {
         console.log('socket listening ' + address.address + ':' + address.port);
     });
 
-    server.on('message', function (message, remote) {
-        message = message.toString().split(' ');
-        if (message.length !== 2) {
-            return;
-        }
-        if (!metrics[message[0]]) {
-            metrics[message[0]] = 0;
-        }
-        metrics[message[0]] += parseInt(message[1]);
-        console.log(remote.address + ':' + remote.port +' - ' + message[0] + ' : ' + message[1]);
+    server.on('message', function (messages, remote) {
+        messages.toString().split('\n').forEach(function onEach(message) {
+            message = message.split(' ');
+            if (!message[0]) {
+                return;
+            }
+            if (!metrics[message[0]]) {
+                metrics[message[0]] = 0;
+            }
+            metrics[message[0]] += parseInt(message[1]);
+        });
     });
 
     server.on('close', function () {
@@ -38,7 +37,7 @@ function start() {
         console.log('socket error ' + address.address + ':' + address.port);
     });
 
-    server.bind(PORT, HOST);
+    server.bind(config.port, config.host);
 }
 
 function stop() {

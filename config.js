@@ -7,6 +7,7 @@ module.exports = {
     },
     client: {
         host: '127.0.0.1',
-        port: 9003
-    }
+        port: 9003,
+    },
+    interval: 10000
 };
