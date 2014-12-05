@@ -5,12 +5,12 @@ var config = require('../config').server;
 var message = 'test.foo';
 
 setTimeout(onTimeout.bind({
-    id: 'server1',
+    id: 'server4',
     client: dgram.createSocket('udp4'),
     i: 1,
     value: 1
 }), 600);
-setTimeout(onTimeout.bind({
+/*setTimeout(onTimeout.bind({
     id: 'server2',
     client: dgram.createSocket('udp4'),
     i: 1,
@@ -21,7 +21,7 @@ setTimeout(onTimeout.bind({
     client: dgram.createSocket('udp4'),
     i: 1,
     value: 3
-}), 400);
+}), 400);*/
 
 function onTimeout() {
     var buffer = new Buffer(this.id + '.' + message + ':' + this.value);
