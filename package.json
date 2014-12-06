@@ -1,17 +1,26 @@
 {
-  "name": "hedwig",
+  "name": "shelob",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martindido/shelob"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martindido/shelob/issues"
+  },
+  "homepage": "https://github.com/martindido/shelob-cli",
   "dependencies": {
     "async": "~0.9.0",
     "sequelize": "~2.0.0-rc2",
     "mysql": "~2.5.3",
     "underscore": "~1.7.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": ""
+  }
 }

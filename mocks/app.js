@@ -4,26 +4,25 @@ var dgram = require('dgram');
 var config = require('../config').server;
 var message = 'test.foo';
 
-setTimeout(onTimeout.bind({
-    id: 'server4',
+setInterval(onInterval.bind({
     client: dgram.createSocket('udp4'),
     i: 1,
     value: 1
-}), 600);
-/*setTimeout(onTimeout.bind({
-    id: 'server2',
+}), 2000);
+setInterval(onInterval.bind({
     client: dgram.createSocket('udp4'),
     i: 1,
     value: 2
-}), 500);
-setTimeout(onTimeout.bind({
-    id: 'server3',
+}), 4000);
+setInterval(onInterval.bind({
     client: dgram.createSocket('udp4'),
     i: 1,
     value: 3
-}), 400);*/
+}), 3000);
 
-function onTimeout() {
+function onInterval() {
+    this.id = 'server' + (Math.floor((Math.random() * 100) + 1));
+
     var buffer = new Buffer(this.id + '.' + message + ':' + this.value);
 
     this.client.send(buffer, 0, buffer.length, config.port, config.host, function(err, bytes) {
@@ -31,10 +30,11 @@ function onTimeout() {
             throw err;
         }
         console.log(this.i, 'UDP message sent to ' + config.host +':'+ config.port);
-        if (this.i >= 500) {
-            return this.client.close();
+        if (this.i >= 10) {
+            this.i = 1;
+            return;
         }
         this.i++;
-        setTimeout(onTimeout.bind(this), 30);
+        setTimeout(onInterval.bind(this), 30);
     }.bind(this));
 }
