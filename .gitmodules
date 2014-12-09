@@ -1,0 +1,3 @@
+[submodule "lib/clients/sql"]
+	path = lib/clients/sql
+	url = https://github.com/martindido/shelob-sql.git
