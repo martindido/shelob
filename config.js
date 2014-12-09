@@ -14,7 +14,7 @@ module.exports = {
         sql: {
             name: 'shelob',
             username: 'root',
-            password: '123456789',
+            //password: '123456789',
             options: {}
         }
     }

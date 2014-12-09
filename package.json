@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/martindido/shelob/issues"
   },
-  "homepage": "https://github.com/martindido/shelob-cli",
+  "homepage": "https://github.com/martindido/shelob",
   "dependencies": {
     "async": "~0.9.0",
     "sequelize": "~2.0.0-rc2",
